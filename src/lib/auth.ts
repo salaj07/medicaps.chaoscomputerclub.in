@@ -78,6 +78,7 @@ export function decodeJwtPayload(token: string): Record<string, any> | null {
     try {
       // Fallback simple atob
       const parts = token.split(".");
+      if (!parts[1]) return null;
       let base64 = parts[1].replace(/-/g, "+").replace(/_/g, "/");
       while (base64.length % 4 !== 0) {
         base64 += "=";
@@ -97,10 +98,11 @@ export function isAuthenticated(): boolean {
   if (!token) return false;
   const payload = decodeJwtPayload(token);
   if (!payload) return false;
-  if (typeof payload.exp === "number") {
+  const exp = payload["exp"];
+  if (typeof exp === "number") {
     const now = Math.floor(Date.now() / 1000);
     // Allow a 30-second clock skew tolerance
-    return payload.exp > now - 30;
+    return exp > now - 30;
   }
   return true;
 }

@@ -79,7 +79,7 @@ export function ProfilePage() {
   const { data: ownProfileData, loading: ownLoading } = useSwrData(
     "member:profile:full",
     () => getMemberProfileData(),
-    { ttl: 5 * 60 * 1000, enabled: isViewingSelf }
+    { ttl: 5 * 60 * 1000, enabled: Boolean(isViewingSelf) }
   );
 
   const { data: studentProfileData, loading: studentLoading } = useSwrData(

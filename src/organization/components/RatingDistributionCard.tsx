@@ -31,8 +31,8 @@ export function RatingDistributionCard({
     const rank = Math.max(1, member.university_rank || 1);
     const pct = (rank / cohortTotal) * 100;
     percentileDisplay = pct < 1 ? `Top ${pct.toFixed(2)}%` : `Top ${pct.toFixed(1)}%`;
-  } else if (member?.percentile) {
-    percentileDisplay = `Top ${(100 - member.percentile).toFixed(1)}%`;
+  } else if ((member as any)?.percentile) {
+    percentileDisplay = `Top ${(100 - (member as any).percentile).toFixed(1)}%`;
   }
   const rankDisplay = member?.university_rank ? `#${member.university_rank}` : "—";
 

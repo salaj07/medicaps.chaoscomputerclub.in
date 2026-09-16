@@ -982,13 +982,13 @@ export function ContestsHubPage() {
                     <p className="max-w-md mx-auto text-xs text-muted-foreground">
                       You haven't attended any contests or screening rounds yet. Register for an upcoming contest to earn your place on the university leaderboard!
                     </p>
-                    {upcomingContests.length > 0 ? (
+                    {upcomingContests.length > 0 && upcomingContests[0] ? (
                       <Button
-                        onClick={() => handleRegister(upcomingContests[0].slug)}
-                        disabled={registeringSlug === upcomingContests[0].slug}
+                        onClick={() => handleRegister(upcomingContests[0]!.slug)}
+                        disabled={registeringSlug === upcomingContests[0]!.slug}
                         className="rounded-none font-mono text-xs font-bold uppercase"
                       >
-                        {registeringSlug === upcomingContests[0].slug ? "REGISTERING..." : `Register For ${upcomingContests[0].title}`}
+                        {registeringSlug === upcomingContests[0]!.slug ? "REGISTERING..." : `Register For ${upcomingContests[0]!.title}`}
                       </Button>
                     ) : (
                       <Button asChild variant="outline" className="rounded-none font-mono text-xs font-bold uppercase">

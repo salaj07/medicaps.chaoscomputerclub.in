@@ -266,7 +266,7 @@ export const contestSystemService = {
         }
         return [];
       },
-      { ttl: 2 * 60 * 1000, force }
+      { ttl: 2 * 60 * 1000, forceRefresh: force }
     );
   },
 
@@ -292,7 +292,7 @@ export const contestSystemService = {
         }
         return null;
       },
-      { ttl: 2 * 60 * 1000, force }
+      { ttl: 2 * 60 * 1000, forceRefresh: force }
     );
   },
 
@@ -366,7 +366,7 @@ export const contestSystemService = {
         }
         return [];
       },
-      { ttl: 2 * 60 * 1000, force }
+      { ttl: 2 * 60 * 1000, forceRefresh: force }
     );
   },
 

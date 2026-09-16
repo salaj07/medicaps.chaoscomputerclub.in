@@ -57,7 +57,9 @@ export function PortalShell() {
 
   const token = getToken();
   const tokenPayload = token ? decodeJwtPayload(token) : null;
-  const fallbackHandle = tokenPayload?.handle || (tokenPayload?.email ? tokenPayload.email.split("@")[0] : "Cadet");
+  const tokenPayloadHandle = tokenPayload ? tokenPayload["handle"] : null;
+  const tokenPayloadEmail = tokenPayload ? tokenPayload["email"] : null;
+  const fallbackHandle = tokenPayloadHandle || (tokenPayloadEmail ? String(tokenPayloadEmail).split("@")[0] : "Cadet");
   const displayHandle = member?.handle || fallbackHandle;
   const initials = member?.full_name
     ? member.full_name
