@@ -1,5 +1,30 @@
-import type { ReactNode } from "react";
+import type { ReactNode, HTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
+
+// ─────────────────────────────────────────────────────────────────────────────
+// TacticalCard — Canonical obsidian card from the login page.
+// rounded-[24px] · gradient bg · dual-highlight border · deep shadow
+// Use this component everywhere a bordered surface / card is needed.
+// ─────────────────────────────────────────────────────────────────────────────
+export function TacticalCard({
+  className,
+  children,
+  ...props
+}: HTMLAttributes<HTMLDivElement> & { className?: string }) {
+  return (
+    <div
+      className={cn(
+        "rounded-[24px] border border-white/[0.08] border-t-white/[0.15]",
+        "bg-black",
+        "shadow-[0_24px_70px_-12px_rgba(0,0,0,0.95),0_0_0_1px_rgba(255,255,255,0.03)]",
+        className,
+      )}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+}
 
 export function PageHeader({
   kicker,
@@ -20,9 +45,9 @@ export function PageHeader({
 }) {
   const formattedKicker = kicker.startsWith("(") ? kicker : `(${kicker})`;
   return (
-    <header
+    <TacticalCard
       className={cn(
-        "rounded-lg border border-white/8 bg-black p-6 flex flex-col md:flex-row md:items-end justify-between gap-6 shadow-none",
+        "p-6 flex flex-col md:flex-row md:items-end justify-between gap-6",
         className
       )}
     >
@@ -48,7 +73,7 @@ export function PageHeader({
         )}
       </div>
       {action && <div className="shrink-0">{action}</div>}
-    </header>
+    </TacticalCard>
   );
 }
 
@@ -119,11 +144,11 @@ export function Metric({
   detail?: string;
 }) {
   return (
-    <div className="p-4 rounded-lg border border-white/8 bg-black">
+    <TacticalCard className="p-4">
       <span className="block text-[10px] font-mono font-medium text-zinc-500 uppercase tracking-wider">{label}</span>
       <strong className="block text-xl font-mono font-bold text-white mt-1 tabular-nums">{value}</strong>
       {detail && <small className="block text-[10px] font-mono text-zinc-500 mt-1">{detail}</small>}
-    </div>
+    </TacticalCard>
   );
 }
 
@@ -145,11 +170,11 @@ export function MonoTag({ children, className }: { children: ReactNode; classNam
 
 export function EmptyState({ title, body }: { title: string; body: string }) {
   return (
-    <div className="flex flex-col items-center justify-center p-12 text-center border border-white/8 rounded-lg bg-black my-6">
+    <TacticalCard className="flex flex-col items-center justify-center p-12 text-center my-6">
       <span className="text-2xl text-zinc-600 font-mono mb-2">∅</span>
       <h3 className="text-sm font-semibold text-white">{title}</h3>
       <p className="text-xs text-zinc-500 max-w-md mt-1">{body}</p>
-    </div>
+    </TacticalCard>
   );
 }
 

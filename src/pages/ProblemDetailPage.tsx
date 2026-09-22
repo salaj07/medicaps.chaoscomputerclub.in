@@ -4,7 +4,7 @@ import { ArrowLeft, Ban, CheckCircle2 } from "lucide-react";
 import { getPublicPortalData } from "@/organization/data/portal.functions";
 import { ProblemDetailSkeleton } from "@/organization/components/skeletons";
 import { useSwrData } from "@/lib/cache/swrCache";
-import { PageHeader, SectionHeader } from "@/organization/components/ui";
+import { PageHeader, SectionHeader, TacticalCard } from "@/organization/components/ui";
 
 export function ProblemDetailPage() {
   const { problemSlug } = useParams<{ problemSlug: string }>();
@@ -75,7 +75,7 @@ export function ProblemDetailPage() {
         }
       />
 
-      <div className="flex items-start gap-3 p-4 rounded-lg border border-white/8 bg-black text-zinc-300">
+      <TacticalCard className="flex items-start gap-3 p-4 text-zinc-300">
         <Ban className="size-4 shrink-0 mt-0.5 text-zinc-500" />
         <div className="space-y-0.5 font-mono text-xs">
           <strong className="text-white block uppercase tracking-wider">Archived Reference Only</strong>
@@ -83,9 +83,9 @@ export function ProblemDetailPage() {
             This challenge is preserved for post-contest analysis. Live submission is closed.
           </p>
         </div>
-      </div>
+      </TacticalCard>
 
-      <article className="rounded-lg border border-white/8 bg-black p-6 space-y-6">
+      <TacticalCard className="p-6 space-y-6">
         <SectionHeader
           kicker="01 // Official Editorial"
           index={`ANALYSIS · ${problem.points} PTS`}
@@ -109,7 +109,7 @@ export function ProblemDetailPage() {
           <CheckCircle2 className="size-3.5 text-emerald-400 shrink-0" />
           <span>Solve metrics reconciled against official campus judge replay.</span>
         </div>
-      </article>
+      </TacticalCard>
     </div>
   );
 }

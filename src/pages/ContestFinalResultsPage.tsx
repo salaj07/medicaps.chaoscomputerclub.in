@@ -19,7 +19,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { PageHeader } from "@/organization/components/ui";
+import { PageHeader, TacticalCard } from "@/organization/components/ui";
 
 import { formatWhen } from "@/features/contest/lifecycle";
 import { cn } from "@/lib/utils";
@@ -71,7 +71,7 @@ export function ContestFinalResultsPage() {
       />
 
       {rows.length === 0 ? (
-        <Card className="rounded-lg border border-white/8 bg-black">
+        <Card>
           <CardContent className="flex flex-col items-center gap-2 py-16 text-center font-mono">
             <Trophy className="size-8 text-zinc-600" />
             <strong className="text-sm font-semibold text-white">Results Pending Verification</strong>
@@ -88,7 +88,7 @@ export function ContestFinalResultsPage() {
               <Card
                 key={row.handle}
                 className={cn(
-                  "rounded-lg border border-white/8 bg-black transition-colors",
+                  "transition-colors",
                   index === 0 && "border-lime-400/40",
                 )}
               >
@@ -129,7 +129,7 @@ export function ContestFinalResultsPage() {
           </section>
 
           {/* Full Standings Table */}
-          <div className="overflow-hidden rounded-lg border border-white/8 bg-black">
+          <TacticalCard className="overflow-hidden">
             <Table>
               <TableHeader>
                 <TableRow className="border-b border-white/8 hover:bg-transparent">
@@ -173,7 +173,7 @@ export function ContestFinalResultsPage() {
                 ))}
               </TableBody>
             </Table>
-          </div>
+          </TacticalCard>
         </>
       )}
 

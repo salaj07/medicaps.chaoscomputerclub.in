@@ -14,7 +14,7 @@ import {
   Users,
 } from "lucide-react";
 import { contestSystemService } from "@/organization/data/contest-system";
-import { SectionHeader, PageHeader } from "@/organization/components/ui";
+import { SectionHeader, PageHeader, TacticalCard } from "@/organization/components/ui";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MyContestsSkeleton } from "@/organization/components/skeletons";
@@ -90,7 +90,7 @@ export function MyContestsPage() {
       </Tabs>
 
       {/* Main Participation List */}
-      <section className="overflow-hidden rounded-lg border border-white/8 bg-black">
+      <TacticalCard className="overflow-hidden">
         <div className="flex items-center justify-between border-b border-white/8 p-4 sm:p-5">
           <SectionHeader
             kicker="Contest History"
@@ -302,7 +302,7 @@ export function MyContestsPage() {
             })}
           </div>
         )}
-      </section>
+      </TacticalCard>
     </div>
   );
 }

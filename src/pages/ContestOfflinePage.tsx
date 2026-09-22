@@ -19,7 +19,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { PageHeader } from "@/organization/components/ui";
+import { PageHeader, TacticalCard } from "@/organization/components/ui";
 import { Countdown } from "@/features/contest/components";
 import { FINALIST_SEATS } from "@/features/contest/lifecycle";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
@@ -89,7 +89,7 @@ export function ContestOfflinePage() {
         <Link to={`/contests/${contestSlug}`} className="inline-flex items-center gap-1.5 font-mono text-xs text-zinc-500 hover:text-white transition-colors">
           <ArrowLeft className="size-3.5" /> Back to contest
         </Link>
-        <Card className="rounded-lg border border-white/8 bg-black">
+        <Card>
           <CardContent className="flex flex-col items-center gap-3 py-16 text-center font-mono">
             <div className="flex size-12 items-center justify-center rounded-md border border-white/10 bg-zinc-950 text-zinc-400">
               <Lock className="size-6" />
@@ -152,7 +152,7 @@ export function ContestOfflinePage() {
 
       <section className="grid gap-4 lg:grid-cols-3">
         {/* Countdown Card */}
-        <Card className="rounded-lg border border-white/8 bg-black">
+        <Card>
           <CardHeader className="p-5 pb-3">
             <CardTitle className="font-mono text-[10px] uppercase tracking-widest text-zinc-500">
               {started ? "Contest Remaining" : "Tournament Bell"}
@@ -164,7 +164,7 @@ export function ContestOfflinePage() {
         </Card>
 
         {/* Check-In Card */}
-        <Card className="rounded-lg border border-white/8 bg-black">
+        <Card>
           <CardHeader className="flex-row items-center gap-2 p-5 pb-3">
             <QrCode className="size-4 text-lime-400" />
             <CardTitle className="text-sm font-semibold text-white">
@@ -198,7 +198,7 @@ export function ContestOfflinePage() {
         </Card>
 
         {/* Workstation Lab Info Card */}
-        <Card className="rounded-lg border border-white/8 bg-black">
+        <Card>
           <CardHeader className="flex-row items-center gap-2 p-5 pb-3">
             <Cpu className="size-4 text-lime-400" />
             <CardTitle className="text-sm font-semibold text-white">
@@ -233,7 +233,7 @@ export function ContestOfflinePage() {
             </Link>
           </Button>
         </div>
-        <div className="overflow-hidden rounded-lg border border-white/8 bg-black">
+        <TacticalCard className="overflow-hidden">
           <Table>
             <TableHeader>
               <TableRow className="border-b border-white/8 hover:bg-transparent">
@@ -272,7 +272,7 @@ export function ContestOfflinePage() {
               )}
             </TableBody>
           </Table>
-        </div>
+        </TacticalCard>
       </section>
     </div>
   );

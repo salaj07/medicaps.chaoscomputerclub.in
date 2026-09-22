@@ -9,6 +9,7 @@ import {
   SectionHeader,
   StatusDot,
   formatContestDate,
+  TacticalCard,
 } from "@/organization/components/ui";
 import { fetchFullProfileData, type FullProfilePayload } from "@/organization/data/queries";
 import { getPublicPortalData } from "@/organization/data/portal.functions";
@@ -84,42 +85,42 @@ export function DashboardPage() {
 
       {/* Telemetry Bento Strip (4 Columns) */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="p-4 rounded-lg border border-white/8 bg-black">
+        <TacticalCard className="p-4">
           <span className="block text-[10px] font-mono text-zinc-500 uppercase tracking-wider">Campus Standings</span>
           <strong className="block text-2xl font-mono font-bold text-white mt-1 tabular-nums">
             #{member?.university_rank || 1}
           </strong>
           <span className="block text-[10px] font-mono text-zinc-600 mt-1">Medi-Caps University</span>
-        </div>
+        </TacticalCard>
 
-        <div className="p-4 rounded-lg border border-white/8 bg-black">
+        <TacticalCard className="p-4">
           <span className="block text-[10px] font-mono text-zinc-500 uppercase tracking-wider">Global Rating</span>
           <strong className="block text-2xl font-mono font-bold text-lime-400 mt-1 tabular-nums">
             {member?.rating ?? 1200}
           </strong>
           <span className="block text-[10px] font-mono text-lime-400/80 mt-1">{member?.tier || "1★ Explorer"}</span>
-        </div>
+        </TacticalCard>
 
-        <div className="p-4 rounded-lg border border-white/8 bg-black">
+        <TacticalCard className="p-4">
           <span className="block text-[10px] font-mono text-zinc-500 uppercase tracking-wider">Contests Logged</span>
           <strong className="block text-2xl font-mono font-bold text-white mt-1 tabular-nums">
             {history.length || (member as any)?.contests_count || 0}
           </strong>
           <span className="block text-[10px] font-mono text-zinc-600 mt-1">Verified Tournaments</span>
-        </div>
+        </TacticalCard>
 
-        <div className="p-4 rounded-lg border border-white/8 bg-black">
+        <TacticalCard className="p-4">
           <span className="block text-[10px] font-mono text-zinc-500 uppercase tracking-wider">Accepted Solutions</span>
           <strong className="block text-2xl font-mono font-bold text-white mt-1 tabular-nums">
             {(member as any)?.solved_count || 0}
           </strong>
           <span className="block text-[10px] font-mono text-zinc-600 mt-1">Problem Archive</span>
-        </div>
+        </TacticalCard>
       </div>
 
       {/* Live Contest Banner or Next Contest Alert */}
       {live ? (
-        <section className="rounded-lg border border-lime-400/40 bg-black p-6 relative overflow-hidden">
+        <TacticalCard className="p-6 relative overflow-hidden border-lime-400/40">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
             <div className="space-y-2">
               <div className="flex items-center gap-2">
@@ -150,9 +151,9 @@ export function DashboardPage() {
               </Button>
             </div>
           </div>
-        </section>
+        </TacticalCard>
       ) : next ? (
-        <section className="rounded-lg border border-white/8 bg-black p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
+        <TacticalCard className="p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
           <div className="space-y-1.5">
             <div className="flex items-center gap-2">
               <StatusDot status="upcoming" />
@@ -172,11 +173,11 @@ export function DashboardPage() {
               </Link>
             </Button>
           </div>
-        </section>
+        </TacticalCard>
       ) : null}
 
       {/* Rating Analytics */}
-      <section className="p-5 rounded-lg border border-white/8 bg-black">
+      <TacticalCard className="p-5">
         <SectionHeader
           kicker="Rating Trajectory"
           index="Progress"
@@ -188,10 +189,10 @@ export function DashboardPage() {
           }
         />
         <RatingChart data={history} />
-      </section>
+      </TacticalCard>
 
       {/* Campus Scoreboard Radar */}
-      <section className="p-5 rounded-lg border border-white/8 bg-black">
+      <TacticalCard className="p-5">
         <SectionHeader
           kicker="Standings Radar"
           index="Live"
@@ -203,10 +204,10 @@ export function DashboardPage() {
           }
         />
         <ScoreboardMatrix entries={publicData.standings} problems={publicData.problems} />
-      </section>
+      </TacticalCard>
 
       {/* Live Campus Activity Stream */}
-      <section className="p-5 rounded-lg border border-white/8 bg-black">
+      <TacticalCard className="p-5">
         <SectionHeader
           kicker="Network Feed"
           index="Telemetry"
@@ -218,7 +219,7 @@ export function DashboardPage() {
           }
         />
         <ContestActivityFeed limit={6} />
-      </section>
+      </TacticalCard>
     </div>
   );
 }

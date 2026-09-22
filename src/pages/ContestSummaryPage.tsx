@@ -41,6 +41,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { fetchContestArenaThunk, fetchContestDetailThunk } from "@/store/slices/contestSlice";
 import { fetchCurrentUserThunk } from "@/store/slices/authSlice";
 import { AssessmentStudioSkeleton } from "@/organization/components/skeletons";
+import { TacticalCard } from "@/organization/components/ui";
 import { contestApi } from "@/features/contest/api";
 import { slugifyProblem, resolveAvatarUrl, formatFullName } from "@/lib/utils";
 import { getToken } from "@/lib/auth";
@@ -341,41 +342,41 @@ export function ContestSummaryPage() {
 
         {/* HackerRank-style Metric Bento Grid */}
         <section className="grid grid-cols-2 md:grid-cols-4 gap-3.5">
-          <div className="p-4 rounded-lg border border-white/8 bg-zinc-950 flex flex-col justify-between space-y-2">
+          <TacticalCard className="p-4 flex flex-col justify-between space-y-2">
             <span className="font-mono text-[10px] uppercase tracking-wider text-zinc-500">Total Challenges</span>
             <div className="flex items-baseline justify-between">
               <span className="text-2xl font-bold font-mono text-white tabular-nums">{problems.length}</span>
               <FileText className="size-4 text-zinc-500" />
             </div>
             <span className="font-mono text-[10px] text-zinc-400">Problem statements</span>
-          </div>
+          </TacticalCard>
 
-          <div className="p-4 rounded-lg border border-lime-400/20 bg-lime-400/5 flex flex-col justify-between space-y-2">
+          <TacticalCard className="p-4 border-lime-400/20 bg-lime-400/5 flex flex-col justify-between space-y-2">
             <span className="font-mono text-[10px] uppercase tracking-wider text-lime-400">Solved &amp; Passed</span>
             <div className="flex items-baseline justify-between">
               <span className="text-2xl font-bold font-mono text-lime-400 tabular-nums">{solvedCount}</span>
               <CheckCircle2 className="size-4 text-lime-400" />
             </div>
             <span className="font-mono text-[10px] text-lime-400/70">100% test cases accepted</span>
-          </div>
+          </TacticalCard>
 
-          <div className="p-4 rounded-lg border border-amber-500/20 bg-amber-500/5 flex flex-col justify-between space-y-2">
+          <TacticalCard className="p-4 border-amber-500/20 bg-amber-500/5 flex flex-col justify-between space-y-2">
             <span className="font-mono text-[10px] uppercase tracking-wider text-amber-400">In Progress</span>
             <div className="flex items-baseline justify-between">
               <span className="text-2xl font-bold font-mono text-amber-400 tabular-nums">{attemptedCount}</span>
               <Code2 className="size-4 text-amber-400" />
             </div>
             <span className="font-mono text-[10px] text-amber-400/70">Draft code stored</span>
-          </div>
+          </TacticalCard>
 
-          <div className="p-4 rounded-lg border border-white/8 bg-zinc-950 flex flex-col justify-between space-y-2">
+          <TacticalCard className="p-4 flex flex-col justify-between space-y-2">
             <span className="font-mono text-[10px] uppercase tracking-wider text-zinc-500">Unattempted</span>
             <div className="flex items-baseline justify-between">
               <span className="text-2xl font-bold font-mono text-zinc-400 tabular-nums">{unattemptedCount}</span>
               <MinusCircle className="size-4 text-zinc-600" />
             </div>
             <span className="font-mono text-[10px] text-zinc-500">No submission yet</span>
-          </div>
+          </TacticalCard>
         </section>
 
         {/* HackerRank-style Questions Review Table */}
@@ -394,7 +395,7 @@ export function ContestSummaryPage() {
             </span>
           </div>
 
-          <div className="rounded-lg border border-white/8 bg-zinc-950 overflow-hidden shadow-xl divide-y divide-white/6">
+          <TacticalCard className="overflow-hidden shadow-xl divide-y divide-white/6">
             {problems.map((problem) => {
               const status = problemStatusMap[problem.id] || "unattempted";
               const problemSlug = slugifyProblem(problem.title, problem.problem_index);
@@ -484,11 +485,11 @@ export function ContestSummaryPage() {
                 </div>
               );
             })}
-          </div>
+          </TacticalCard>
         </section>
 
         {/* Final Submission Card */}
-        <section className="p-6 rounded-lg border border-white/10 bg-zinc-950 space-y-4 shadow-xl">
+        <TacticalCard className="p-6 space-y-4 shadow-xl">
           <div className="flex items-start gap-3">
             <div className="p-2 rounded-md border border-white/10 bg-zinc-900 text-lime-400 shrink-0 mt-0.5">
               <Trophy className="size-5" />
@@ -531,7 +532,7 @@ export function ContestSummaryPage() {
               <span>Submit Final Contest</span>
             </Button>
           </div>
-        </section>
+        </TacticalCard>
       </main>
 
       {/* Microservice Architecture Telemetry Footer */}

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, BookOpenCheck } from "lucide-react";
 import { getPublicPortalData } from "@/organization/data/portal.functions";
-import { SectionHeader, PageHeader, EmptyState } from "@/organization/components/ui";
+import { SectionHeader, PageHeader, EmptyState, TacticalCard } from "@/organization/components/ui";
 import { ProblemArchiveSkeleton } from "@/organization/components/skeletons";
 import { useSwrData } from "@/lib/cache/swrCache";
 
@@ -32,13 +32,13 @@ export function ProblemArchivePage() {
         title="Problem Archive"
         description="Official competitive programming problem statements and editorials from concluded tournaments."
         action={
-          <div className="flex size-12 items-center justify-center rounded-lg border border-white/8 bg-black text-lime-400">
+          <TacticalCard className="flex size-12 items-center justify-center text-lime-400">
             <BookOpenCheck className="size-6" />
-          </div>
+          </TacticalCard>
         }
       />
 
-      <section className="rounded-lg border border-white/8 bg-black p-5 sm:p-6 space-y-5">
+      <TacticalCard className="p-5 sm:p-6 space-y-5">
         <SectionHeader kicker="01 // Released Sets" index="PROBLEMS" title="Concluded Contest Challenges" />
 
         {complete.length === 0 ? (
@@ -53,9 +53,9 @@ export function ProblemArchivePage() {
                 const pIndex = p.problem_index || p.index || "—";
                 const pSlug = (pIndex === "—" ? "" : pIndex).toLowerCase();
                 return (
-                  <article
+                  <TacticalCard
                     key={`${c.slug}-${pIndex}-${p.id || ""}`}
-                    className="flex items-center justify-between p-4 rounded-lg border border-white/8 bg-black hover:border-white/20 transition-colors group"
+                    className="flex items-center justify-between p-4 hover:border-white/20 transition-colors group"
                   >
                     <div className="flex items-center gap-3.5 min-w-0">
                       <span className="font-mono text-base font-semibold text-lime-400 w-7 text-center shrink-0">
@@ -84,13 +84,13 @@ export function ProblemArchivePage() {
                         <ArrowRight className="size-3.5" />
                       </Link>
                     </div>
-                  </article>
+                  </TacticalCard>
                 );
               })
             )}
           </div>
         )}
-      </section>
+      </TacticalCard>
     </div>
   );
 }

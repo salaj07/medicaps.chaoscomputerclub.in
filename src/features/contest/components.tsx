@@ -157,7 +157,7 @@ export function ContestCard({
   return (
     <Card
       className={cn(
-        "rounded-lg border border-white/8 bg-black transition-colors hover:border-white/20 flex flex-col justify-between",
+        "transition-colors hover:border-white/20 flex flex-col justify-between",
         featured && "border-lime-400/30",
       )}
     >

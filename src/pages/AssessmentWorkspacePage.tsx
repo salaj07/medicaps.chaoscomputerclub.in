@@ -58,6 +58,7 @@ import {
   dismissAntiCheatWarning,
 } from "@/store/slices/assessmentSlice";
 import { AssessmentStudioSkeleton } from "@/organization/components/skeletons";
+import { TacticalCard } from "@/organization/components/ui";
 
 function formatTimer(seconds: number): string {
   const h = Math.floor(seconds / 3600);
@@ -277,7 +278,7 @@ export function AssessmentWorkspacePage() {
     const isDisqualified = session.status === "disqualified";
     return (
       <div className="flex h-screen w-screen flex-col items-center justify-center bg-black text-white font-sans p-6">
-        <div className="max-w-md w-full p-8 rounded-lg bg-black border border-white/8 text-center space-y-6">
+        <TacticalCard className="max-w-md w-full p-8 text-center space-y-6">
           <div
             className={`size-14 rounded-md flex items-center justify-center mx-auto border ${
               isDisqualified
@@ -341,7 +342,7 @@ export function AssessmentWorkspacePage() {
               Return to Contest Details
             </button>
           </div>
-        </div>
+        </TacticalCard>
       </div>
     );
   }
@@ -350,7 +351,7 @@ export function AssessmentWorkspacePage() {
   if (assessment && !session) {
     return (
       <div className="flex h-screen w-screen flex-col items-center justify-center bg-black text-white font-sans p-6">
-        <div className="max-w-md w-full p-8 rounded-lg bg-black border border-white/8 text-center space-y-6">
+        <TacticalCard className="max-w-md w-full p-8 text-center space-y-6">
           <div className="size-14 rounded-md bg-zinc-950 border border-white/10 flex items-center justify-center mx-auto text-lime-400">
             <Clock size={28} />
           </div>
@@ -379,7 +380,7 @@ export function AssessmentWorkspacePage() {
           >
             Close & Return
           </Button>
-        </div>
+        </TacticalCard>
       </div>
     );
   }
@@ -392,7 +393,7 @@ export function AssessmentWorkspacePage() {
 
     return (
       <div className="flex h-screen w-screen flex-col items-center justify-center bg-black text-white font-sans p-6">
-        <div className="max-w-md w-full p-6 rounded-lg bg-black border border-white/8 text-center space-y-4">
+        <TacticalCard className="max-w-md w-full p-6 text-center space-y-4">
           <div className="size-12 rounded-md bg-zinc-950 border border-white/10 flex items-center justify-center mx-auto">
             {isLifecycleErr ? <Lock size={22} className="text-amber-400" /> : <ShieldAlert size={22} className="text-red-400" />}
           </div>
@@ -440,7 +441,7 @@ export function AssessmentWorkspacePage() {
               Return to Contest Details
             </Button>
           </div>
-        </div>
+        </TacticalCard>
       </div>
     );
   }

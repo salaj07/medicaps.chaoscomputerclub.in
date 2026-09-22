@@ -18,7 +18,7 @@ import { fetchContestDetailThunk, fetchCampusPassThunk } from "@/store/slices/co
 import { invalidateSwrCache, globalSwrStore } from "@/lib/cache/swrCache";
 import { ContestOfflineSkeleton } from "@/organization/components/skeletons";
 import { useRealtimeEvents } from "@/lib/realtime";
-import { PageHeader, SectionHeader } from "@/organization/components/ui";
+import { PageHeader, SectionHeader, TacticalCard } from "@/organization/components/ui";
 
 export function ContestQualifiedPage() {
   const { contestSlug = "" } = useParams<{ contestSlug: string }>();
@@ -159,7 +159,7 @@ export function ContestQualifiedPage() {
           {pass ? (
             <div className="space-y-6">
               {/* QR Code Hero Card */}
-              <div className="flex flex-col items-center gap-6 rounded-lg border border-lime-400/30 bg-black p-6 sm:p-8">
+              <TacticalCard className="flex flex-col items-center gap-6 border-lime-400/30 p-6 sm:p-8">
                 {/* Status Bar */}
                 <div className="flex items-center justify-between w-full border-b border-white/8 pb-3">
                   <span className="font-mono text-[10px] font-semibold uppercase tracking-wider text-lime-400">
@@ -249,10 +249,10 @@ export function ContestQualifiedPage() {
                     </div>
                   )}
                 </div>
-              </div>
+              </TacticalCard>
 
               {/* Lab Instructions */}
-              <div className="space-y-3 rounded-lg border border-white/8 bg-black p-5">
+              <TacticalCard className="space-y-3 p-5">
                 <SectionHeader kicker="01 // Protocol" index="LAB PROTOCOL" title="Venue Regulations" />
                 <ul className="space-y-2 font-mono text-xs text-zinc-400">
                   <li className="flex items-start gap-2">
@@ -268,21 +268,21 @@ export function ContestQualifiedPage() {
                     <span>The live contest arena is air-gapped and synchronized with the proctor operations command.</span>
                   </li>
                 </ul>
-              </div>
+              </TacticalCard>
             </div>
           ) : (
-            <div className="rounded-lg border border-white/8 bg-black p-8 text-center font-mono text-xs text-zinc-400 space-y-3">
+            <TacticalCard className="p-8 text-center font-mono text-xs text-zinc-400 space-y-3">
               <ShieldCheck className="size-8 mx-auto text-lime-400" />
               <p>Top 30 qualification verified. Generating your secure QR pass...</p>
               <Button onClick={() => refreshData(true)} variant="outline" size="sm" className="rounded-md border-white/10 text-white">
                 Refresh Credentials
               </Button>
-            </div>
+            </TacticalCard>
           )}
         </>
       ) : (
         /* Not Qualified State */
-        <div className="rounded-lg border border-white/8 bg-black p-8 text-center space-y-4 font-mono">
+        <TacticalCard className="p-8 text-center space-y-4 font-mono">
           <div className="size-12 rounded-md bg-zinc-950 border border-white/10 flex items-center justify-center mx-auto text-zinc-400">
             <Lock size={22} />
           </div>
@@ -300,7 +300,7 @@ export function ContestQualifiedPage() {
               <Link to={`/contests/${contestSlug}`}>Contest Overview</Link>
             </Button>
           </div>
-        </div>
+        </TacticalCard>
       )}
     </div>
   );

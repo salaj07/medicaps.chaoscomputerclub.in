@@ -71,6 +71,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { SettingsSkeleton } from "@/organization/components/skeletons";
+import { TacticalCard } from "@/organization/components/ui";
 
 // ─── Constants ───────────────────────────────────────────────────────────────
 
@@ -112,10 +113,9 @@ function SettingSection({
   danger?: boolean;
 }) {
   return (
-    <section
+    <TacticalCard
       className={cn(
-        "border rounded-lg",
-        danger ? "border-red-500/20 bg-black" : "border-white/8 bg-black"
+        danger ? "border-red-500/20" : ""
       )}
     >
       <div
@@ -137,7 +137,7 @@ function SettingSection({
         )}
       </div>
       <div className="px-6 py-5 space-y-5">{children}</div>
-    </section>
+    </TacticalCard>
   );
 }
 
@@ -249,14 +249,11 @@ export function SettingsPage() {
 
   useEffect(() => {
     const updateSettingsPill = () => {
-      const navEl = settingsNavRef.current;
       const activeEl = settingsItemRefs.current[activeTab];
-      if (navEl && activeEl) {
-        const navRect = navEl.getBoundingClientRect();
-        const activeRect = activeEl.getBoundingClientRect();
+      if (activeEl) {
         setSettingsPillStyle({
-          top: activeRect.top - navRect.top,
-          height: activeRect.height,
+          top: activeEl.offsetTop,
+          height: activeEl.offsetHeight,
           opacity: 1,
           ready: true,
         });
@@ -500,29 +497,29 @@ export function SettingsPage() {
         {/* ── Left sidebar nav ─────────────────────────────────────────────── */}
         <nav
           ref={settingsNavRef}
-          className="relative hidden md:flex flex-col w-52 shrink-0 sticky top-6 gap-1 p-1 rounded-lg border border-white/8 bg-black"
+          className="relative hidden md:flex flex-col w-56 shrink-0 sticky top-6 gap-1 p-2 rounded-[24px] border border-white/[0.08] border-t-white/[0.15] bg-black shadow-[0_24px_70px_-12px_rgba(0,0,0,0.95),0_0_0_1px_rgba(255,255,255,0.03)]"
           aria-label="Settings navigation"
         >
           {/* Animated Active Sliding Indicator */}
           <div
             aria-hidden="true"
             className={cn(
-              "absolute left-1 right-1 pointer-events-none rounded-md",
+              "absolute left-2 right-2 top-0 pointer-events-none rounded-[16px]",
               settingsPillStyle.ready
                 ? "transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)]"
                 : "transition-none",
               activeTab === "danger"
                 ? "bg-red-500/10 border border-red-500/30"
-                : "bg-white/10 border border-white/15"
+                : "bg-white/[0.08] border border-white/15"
             )}
             style={{
-              transform: `translateY(${Math.max(0, settingsPillStyle.top - 4)}px)`,
-              height: settingsPillStyle.height ? `${settingsPillStyle.height}px` : "36px",
+              transform: `translateY(${settingsPillStyle.top}px)`,
+              height: settingsPillStyle.height ? `${settingsPillStyle.height}px` : "38px",
               opacity: settingsPillStyle.opacity,
             }}
           >
             {activeTab !== "danger" && (
-              <span className="absolute left-0 top-1.5 bottom-1.5 w-[2px] bg-lime-400 rounded-r-full shadow-[0_0_6px_rgba(204,255,0,0.5)]" />
+              <span className="absolute left-1.5 top-2 bottom-2 w-[2.5px] bg-lime-400 rounded-full shadow-[0_0_8px_rgba(204,255,0,0.6)]" />
             )}
           </div>
 
@@ -538,7 +535,7 @@ export function SettingsPage() {
                 type="button"
                 onClick={() => setActiveTab(item.id)}
                 className={cn(
-                  "relative z-10 flex items-center gap-2.5 w-full px-3 py-2 text-xs font-sans rounded-md transition-colors cursor-pointer select-none",
+                  "relative z-10 flex items-center gap-2.5 w-full pl-3.5 pr-3 h-[38px] text-xs font-sans rounded-[16px] transition-colors cursor-pointer select-none",
                   active
                     ? item.danger
                       ? "text-red-400 font-semibold"
@@ -549,7 +546,7 @@ export function SettingsPage() {
                 )}
               >
                 <Icon size={13} className="shrink-0" />
-                <span>{item.label}</span>
+                <span className="leading-none">{item.label}</span>
                 {active && !item.danger && (
                   <span className="size-1.5 rounded-full bg-lime-400 ml-auto shadow-[0_0_6px_rgba(204,255,0,0.6)]" />
                 )}
@@ -998,7 +995,7 @@ export function SettingsPage() {
                 title="Active Session"
                 description="Current terminal device authorization and cryptographic token parameters."
               >
-                <div className="flex items-start justify-between gap-4 p-4 bg-black border border-white/8 rounded-lg">
+                <TacticalCard className="flex items-start justify-between gap-4 p-4">
                   <div className="flex items-start gap-3">
                     <Monitor size={18} className="text-lime-400 mt-0.5 shrink-0" />
                     <div>
@@ -1024,14 +1021,14 @@ export function SettingsPage() {
                     <LogOut size={12} />
                     Sign out
                   </Button>
-                </div>
+                </TacticalCard>
               </SettingSection>
 
               <SettingSection
                 title="Cryptographic Proof Certificates"
                 description="Your contest participation is anchored to HMAC-SHA256 sealed proof certificates."
               >
-                <div className="p-4 bg-black border border-white/8 rounded-lg flex items-start gap-3">
+                <TacticalCard className="p-4 flex items-start gap-3">
                   <Zap size={15} className="text-lime-400 mt-0.5 shrink-0" />
                   <div>
                     <p className="text-sm font-medium text-zinc-300">Proof certificates are immutable</p>
@@ -1046,7 +1043,7 @@ export function SettingsPage() {
                       </Link>
                     </Button>
                   </div>
-                </div>
+                </TacticalCard>
               </SettingSection>
             </>
           )}

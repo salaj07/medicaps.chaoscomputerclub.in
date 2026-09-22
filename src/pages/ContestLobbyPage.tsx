@@ -26,6 +26,7 @@ import {
   contestPhase,
   formatWhen,
 } from "@/features/contest/lifecycle";
+import { TacticalCard } from "@/organization/components/ui";
 
 export function ContestLobbyPage() {
   const { contestSlug = "" } = useParams<{ contestSlug: string }>();
@@ -108,7 +109,7 @@ export function ContestLobbyPage() {
 
       {/* Submitted State */}
       {isAssessmentSubmitted ? (
-        <div className="space-y-6 rounded-lg border border-white/8 bg-black p-6 sm:p-8">
+        <TacticalCard className="space-y-6 p-6 sm:p-8">
           <div className="space-y-3">
             <div className="flex items-center gap-2">
               <span className="font-mono text-[10px] uppercase tracking-widest text-zinc-500">
@@ -149,10 +150,10 @@ export function ContestLobbyPage() {
               Contest Overview
             </Button>
           </div>
-        </div>
+        </TacticalCard>
       ) : (!resolvedRegistration?.registered && !isDevBypass) ? (
         /* Not Registered */
-        <div className="space-y-6 rounded-lg border border-white/8 bg-black p-6 sm:p-8">
+        <TacticalCard className="space-y-6 p-6 sm:p-8">
           <div className="space-y-3">
             <div className="flex items-center gap-2">
               <span className="font-mono text-[10px] uppercase tracking-widest text-zinc-500">
@@ -174,10 +175,10 @@ export function ContestLobbyPage() {
           <Button asChild className="rounded-md font-mono text-xs font-semibold bg-transparent text-white border border-white/20 hover:bg-lime-400 hover:text-black hover:border-lime-400 transition-colors [&_svg]:transition-colors">
             <Link to={`/contests/${contestSlug}`}>Register Slot</Link>
           </Button>
-        </div>
+        </TacticalCard>
       ) : notYetOpen ? (
         /* Locked Waiting Room */
-        <div className="space-y-6 rounded-lg border border-white/8 bg-black p-6 sm:p-8 font-mono">
+        <TacticalCard className="space-y-6 p-6 sm:p-8 font-mono">
           <div className="space-y-3">
             <div className="flex items-center gap-2">
               <span className="text-[10px] uppercase tracking-widest text-zinc-500">
@@ -214,10 +215,10 @@ export function ContestLobbyPage() {
           <Button asChild variant="outline" className="rounded-md text-xs border-white/10 bg-black text-zinc-300 hover:bg-lime-400 hover:text-black hover:border-lime-400">
             <Link to={`/contests/${contestSlug}`}>Back to Contest</Link>
           </Button>
-        </div>
+        </TacticalCard>
       ) : (phase === "assessment_closed" && !isDevBypass) ? (
         /* Closed */
-        <div className="space-y-6 rounded-lg border border-white/8 bg-black p-6 sm:p-8 font-mono">
+        <TacticalCard className="space-y-6 p-6 sm:p-8 font-mono">
           <div className="space-y-3">
             <div className="flex items-center gap-2">
               <span className="text-[10px] uppercase tracking-widest text-red-400">
@@ -239,10 +240,10 @@ export function ContestLobbyPage() {
           <Button asChild variant="outline" className="rounded-md text-xs border-white/10 bg-black text-zinc-300 hover:bg-lime-400 hover:text-black hover:border-lime-400">
             <Link to={`/contests/${contestSlug}`}>Back to Contest</Link>
           </Button>
-        </div>
+        </TacticalCard>
       ) : (
         /* Ready to Attempt / Assessment Lobby */
-        <div className="space-y-6 rounded-lg border border-white/8 bg-black p-6 sm:p-8">
+        <TacticalCard className="space-y-6 p-6 sm:p-8">
           {/* Header */}
           <div className="space-y-2">
             <div className="flex items-center gap-2">
@@ -406,7 +407,7 @@ export function ContestLobbyPage() {
               )}
             </div>
           )}
-        </div>
+        </TacticalCard>
       )}
     </div>
   );

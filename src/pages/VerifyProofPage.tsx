@@ -24,7 +24,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ProofBadge } from "@/organization/components/ProofBadge";
 import { getPublicPortalData } from "@/organization/data/portal.functions";
 import { VerifyProofSkeleton } from "@/organization/components/skeletons";
-import { PageHeader } from "@/organization/components/ui";
+import { PageHeader, TacticalCard } from "@/organization/components/ui";
 import { useSwrData } from "@/lib/cache/swrCache";
 import { toast } from "sonner";
 
@@ -82,14 +82,14 @@ export function VerifyProofPage() {
         title="Proof Verification"
         description="Public SHA-256 Cryptographic Credential & Contest Achievement Verification Console."
         action={
-          <div className="size-11 rounded-lg bg-black border border-white/10 flex items-center justify-center shrink-0">
+          <TacticalCard className="size-11 flex items-center justify-center shrink-0">
             <ShieldCheck className="size-6 text-lime-400" />
-          </div>
+          </TacticalCard>
         }
       />
 
       {/* ── SEARCH CARD ── */}
-      <div className="rounded-lg border border-white/8 bg-black p-6 space-y-4">
+      <TacticalCard className="p-6 space-y-4">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -150,7 +150,7 @@ export function VerifyProofPage() {
         {submitted && (
           <div className="pt-2">
             {result ? (
-              <div className="rounded-lg border border-emerald-500/30 bg-black p-6 space-y-5 font-mono">
+              <TacticalCard className="border-emerald-500/30 p-6 space-y-5 font-mono">
                 <div className="flex items-center justify-between border-b border-white/8 pb-4">
                   <div className="flex items-center gap-3">
                     <div className="size-9 rounded-md bg-emerald-950/40 border border-emerald-500/40 flex items-center justify-center shrink-0">
@@ -214,9 +214,9 @@ export function VerifyProofPage() {
                   <span>Standard: RFC-6234 SHA-256</span>
                   <span>Node: MCU-CCC-PROD-01</span>
                 </div>
-              </div>
+              </TacticalCard>
             ) : (
-              <div className="rounded-lg border border-rose-500/30 bg-black p-6 space-y-3 font-mono">
+              <TacticalCard className="border-rose-500/30 p-6 space-y-3 font-mono">
                 <div className="flex items-center gap-3">
                   <div className="size-9 rounded-md bg-rose-950/40 border border-rose-500/40 flex items-center justify-center shrink-0">
                     <ShieldAlert className="size-5 text-rose-400" />
@@ -229,11 +229,11 @@ export function VerifyProofPage() {
                 <p className="text-xs text-rose-300/90 leading-relaxed">
                   The certificate ID or digest <code className="text-white bg-white/10 px-1.5 py-0.5 rounded font-mono">{submitted}</code> is not registered on the Medi-Caps Chapter public ledger.
                 </p>
-              </div>
+              </TacticalCard>
             )}
           </div>
         )}
-      </div>
+      </TacticalCard>
     </div>
   );
 }

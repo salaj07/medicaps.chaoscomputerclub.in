@@ -28,7 +28,7 @@ import { ProofBadge } from "@/organization/components/ProofBadge";
 import { RatingChart } from "@/organization/components/RatingChart";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Metric, SectionHeader, TierBadge } from "@/organization/components/ui";
+import { Metric, SectionHeader, TierBadge, TacticalCard } from "@/organization/components/ui";
 import {
   getMemberProfileData,
   getStudentProfileData,
@@ -302,7 +302,7 @@ export function ProfilePage() {
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 space-y-6">
       {/* Profile Header Card */}
-      <header className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 rounded-lg border border-white/8 bg-black p-6 sm:p-7">
+      <TacticalCard className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 p-6 sm:p-7">
         <div className="flex items-start gap-5">
           {/* Avatar Container */}
           <div className="relative group shrink-0">
@@ -534,7 +534,7 @@ export function ProfilePage() {
             <dd className="text-zinc-300">{m.email || "—"}</dd>
           </div>
         </dl>
-      </header>
+      </TacticalCard>
 
       {/* 4 Metric Bento Strip */}
       <section className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -554,10 +554,10 @@ export function ProfilePage() {
 
       {/* Trajectory & Distribution */}
       <section className="grid grid-cols-1 lg:grid-cols-3 gap-5">
-        <div className="lg:col-span-2 rounded-lg border border-white/8 bg-black p-5 sm:p-6 space-y-4">
+        <TacticalCard className="lg:col-span-2 p-5 sm:p-6 space-y-4">
           <SectionHeader kicker="01 // Rating History" index="TRAJECTORY" title="Competitive Trajectory" />
           <RatingChart data={history} />
-        </div>
+        </TacticalCard>
         <div>
           <RatingDistributionCard
             member={m}
@@ -568,7 +568,7 @@ export function ProfilePage() {
       </section>
 
       {/* Contest Battle Logs */}
-      <section className="rounded-lg border border-white/8 bg-black p-5 sm:p-6 space-y-4">
+      <TacticalCard className="p-5 sm:p-6 space-y-4">
         <SectionHeader kicker="02 // Record" index="CONTESTS" title="Attended Tournaments" />
         <div className="divide-y divide-white/6 font-mono text-xs">
           {battles.length === 0 ? (
@@ -600,11 +600,11 @@ export function ProfilePage() {
             ))
           )}
         </div>
-      </section>
+      </TacticalCard>
 
       {/* Achievements & Proof */}
       <section className="grid grid-cols-1 lg:grid-cols-3 gap-5">
-        <div className="lg:col-span-2 rounded-lg border border-white/8 bg-black p-5 sm:p-6 space-y-4">
+        <TacticalCard className="lg:col-span-2 p-5 sm:p-6 space-y-4">
           <SectionHeader kicker="03 // Milestones" index="HONORS" title="Achievement Ledger" />
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 font-mono text-xs">
             {achievements.length === 0 ? (
@@ -629,9 +629,9 @@ export function ProfilePage() {
               ))
             )}
           </div>
-        </div>
+        </TacticalCard>
 
-        <div className="rounded-lg border border-white/8 bg-black p-5 sm:p-6 space-y-4">
+        <TacticalCard className="p-5 sm:p-6 space-y-4">
           <SectionHeader kicker="04 // Verification" index="CRYPTOGRAPHIC" title="Latest Proof" />
           {proofs[0] ? (
             <>
@@ -648,16 +648,16 @@ export function ProfilePage() {
               No cryptographic proofs generated yet.
             </div>
           )}
-        </div>
+        </TacticalCard>
       </section>
 
       {/* Trust Footer */}
-      <footer className="flex items-center gap-2.5 p-4 rounded-lg border border-white/8 bg-black text-zinc-500 font-mono text-xs">
+      <TacticalCard className="flex items-center gap-2.5 p-4 text-zinc-500 font-mono text-xs">
         <Zap className="size-3.5 text-lime-400 shrink-0" />
         <p>
           Ratings and achievements derive exclusively from physically proctored campus tournaments.
         </p>
-      </footer>
+      </TacticalCard>
     </div>
   );
 }

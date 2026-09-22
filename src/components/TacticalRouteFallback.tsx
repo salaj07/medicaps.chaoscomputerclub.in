@@ -5,6 +5,7 @@
 
 import React from "react";
 import { Skeleton } from "@/components/ui/skeleton";
+import { TacticalCard } from "@/organization/components/ui";
 
 export function AppShellSkeleton() {
   return (
@@ -79,18 +80,18 @@ export function AppShellSkeleton() {
           {/* Metrics Bento Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="p-4 rounded-lg border border-white/8 bg-black space-y-2">
+              <TacticalCard key={i} className="p-4 space-y-2">
                 <Skeleton className="h-2.5 w-20" />
                 <Skeleton className="h-7 w-28" />
                 <Skeleton className="h-2.5 w-16" />
-              </div>
+              </TacticalCard>
             ))}
           </div>
 
           {/* Content Cards Grid */}
           <div className="grid gap-6 md:grid-cols-2">
             {[1, 2].map((i) => (
-              <div key={i} className="p-6 rounded-xl border border-white/8 bg-black space-y-4">
+              <TacticalCard key={i} className="p-6 space-y-4">
                 <div className="flex justify-between items-center">
                   <Skeleton className="h-4 w-24" />
                   <Skeleton className="h-3 w-16" />
@@ -102,7 +103,7 @@ export function AppShellSkeleton() {
                   <Skeleton className="h-9 flex-1 rounded-md" />
                   <Skeleton className="h-9 w-24 rounded-md" />
                 </div>
-              </div>
+              </TacticalCard>
             ))}
           </div>
         </div>

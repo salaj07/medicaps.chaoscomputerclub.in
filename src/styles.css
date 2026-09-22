@@ -207,7 +207,7 @@ textarea {
     @apply font-sans text-[10px] font-semibold uppercase tracking-widest text-lime-400;
   }
   .panel {
-    @apply p-6 rounded-lg border border-white/8 bg-black;
+    @apply p-6 rounded-[24px] border border-white/[0.08] [border-top-color:rgba(255,255,255,0.15)] bg-black shadow-[0_24px_70px_-12px_rgba(0,0,0,0.95),0_0_0_1px_rgba(255,255,255,0.03)];
   }
   .section-heading {
     @apply flex items-end justify-between gap-4 border-b border-white/8 pb-4 mb-6;

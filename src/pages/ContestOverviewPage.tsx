@@ -26,6 +26,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { useRealtimeEvents } from "@/lib/realtime";
 import { ContestDetailSkeleton } from "@/organization/components/skeletons";
 import { slugifyProblem } from "@/lib/utils";
+import { TacticalCard } from "@/organization/components/ui";
 
 function useCountdown(targetIsoDate: string | null | undefined) {
   const [timeLeft, setTimeLeft] = useState<{
@@ -159,7 +160,7 @@ export function ContestOverviewPage() {
       </div>
 
       {/* ── HERO BANNER ── */}
-      <div className="rounded-lg border border-white/8 bg-black p-6 sm:p-8 space-y-6">
+      <TacticalCard className="p-6 sm:p-8 space-y-6">
         <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
           <div className="space-y-3 max-w-2xl">
             <div className="flex flex-wrap items-center gap-2">
@@ -210,7 +211,7 @@ export function ContestOverviewPage() {
           </div>
 
           {/* Right Side: Countdown Card */}
-          <div className="rounded-lg border border-white/8 bg-black p-4 md:min-w-[260px] text-center space-y-3 shrink-0">
+          <TacticalCard className="p-4 md:min-w-[260px] text-center space-y-3 shrink-0">
             <span className="font-mono text-[10px] uppercase tracking-wider text-zinc-500 block">
               {isLive ? "Contest Closes In" : isFinished ? "Contest Status" : "Contest Starts In"}
             </span>
@@ -236,7 +237,7 @@ export function ContestOverviewPage() {
                 ))}
               </div>
             )}
-          </div>
+          </TacticalCard>
         </div>
 
         {/* ── PRIMARY ACTION STRIP ── */}
@@ -318,12 +319,12 @@ export function ContestOverviewPage() {
             </span>
           </div>
         </div>
-      </div>
+      </TacticalCard>
 
       {/* ── CONTEST DETAILS & PROBLEM SET ── */}
       <div className="grid gap-6 lg:grid-cols-12">
         {/* Left Column: Rules & Regulations */}
-        <div className="lg:col-span-5 rounded-lg border border-white/8 bg-black p-6 space-y-4">
+        <TacticalCard className="lg:col-span-5 p-6 space-y-4">
           <div className="flex items-center justify-between border-b border-white/8 pb-3">
             <h2 className="text-sm font-semibold text-white tracking-wide uppercase font-mono">
               Contest Rules
@@ -363,10 +364,10 @@ export function ContestOverviewPage() {
               </span>
             </li>
           </ol>
-        </div>
+        </TacticalCard>
 
         {/* Right Column: Problem Set Table */}
-        <div className="lg:col-span-7 rounded-lg border border-white/8 bg-black p-6 space-y-4 flex flex-col justify-between">
+        <TacticalCard className="lg:col-span-7 p-6 space-y-4 flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between border-b border-white/8 pb-3">
               <h2 className="text-sm font-semibold text-white tracking-wide uppercase font-mono">
@@ -450,7 +451,7 @@ export function ContestOverviewPage() {
               View Standings →
             </Link>
           </div>
-        </div>
+        </TacticalCard>
       </div>
     </div>
   );

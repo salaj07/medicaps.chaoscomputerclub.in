@@ -82,6 +82,7 @@ import {
 } from "@/store/slices/contestSlice";
 import { fetchCurrentUserThunk } from "@/store/slices/authSlice";
 import { AssessmentStudioSkeleton } from "@/organization/components/skeletons";
+import { TacticalCard } from "@/organization/components/ui";
 import { useRealtimeEvents } from "@/lib/realtime";
 import { slugifyProblem, resolveAvatarUrl, formatFullName } from "@/lib/utils";
 import { getToken } from "@/lib/auth";
@@ -738,7 +739,7 @@ export function ContestArenaPage() {
     if (isUnauthenticated) {
       return (
         <div className="flex min-h-[100dvh] w-full flex-col items-center justify-center bg-black p-4 text-white font-sans">
-          <div className="w-full max-w-md space-y-6 rounded-lg border border-white/10 bg-zinc-950 p-8 text-center shadow-2xl">
+          <TacticalCard className="w-full max-w-md space-y-6 p-8 text-center shadow-2xl">
             <div className="mx-auto flex size-14 items-center justify-center rounded-md border border-lime-400/30 bg-lime-400/10 text-lime-400">
               <Lock className="size-7" />
             </div>
@@ -776,7 +777,7 @@ export function ContestArenaPage() {
                 </Link>
               </Button>
             </div>
-          </div>
+          </TacticalCard>
         </div>
       );
     }
@@ -784,7 +785,7 @@ export function ContestArenaPage() {
     if (isUpcoming) {
       return (
         <div className="flex min-h-[100dvh] w-full flex-col items-center justify-center bg-black p-4 text-white font-sans">
-          <div className="w-full max-w-md space-y-6 rounded-lg border border-amber-500/30 bg-zinc-950 p-8 text-center shadow-2xl">
+          <TacticalCard className="w-full max-w-md space-y-6 border-amber-500/30 p-8 text-center shadow-2xl">
             <div className="mx-auto flex size-14 items-center justify-center rounded-md border border-amber-500/30 bg-amber-500/10 text-amber-400">
               <Clock className="size-7" />
             </div>
@@ -822,7 +823,7 @@ export function ContestArenaPage() {
                 </Link>
               </Button>
             </div>
-          </div>
+          </TacticalCard>
         </div>
       );
     }
@@ -830,7 +831,7 @@ export function ContestArenaPage() {
     if (isNotFound) {
       return (
         <div className="flex min-h-[100dvh] w-full flex-col items-center justify-center bg-black p-4 text-white font-sans">
-          <div className="w-full max-w-md space-y-6 rounded-lg border border-red-500/30 bg-zinc-950 p-8 text-center shadow-2xl">
+          <TacticalCard className="w-full max-w-md space-y-6 border-red-500/30 p-8 text-center shadow-2xl">
             <div className="mx-auto flex size-14 items-center justify-center rounded-md border border-red-500/30 bg-red-500/10 text-red-400">
               <AlertTriangle className="size-7" />
             </div>
@@ -858,7 +859,7 @@ export function ContestArenaPage() {
                 </Link>
               </Button>
             </div>
-          </div>
+          </TacticalCard>
         </div>
       );
     }
@@ -866,7 +867,7 @@ export function ContestArenaPage() {
     if (isProctorGate) {
       return (
         <div className="flex min-h-[100dvh] w-full flex-col items-center justify-center bg-black p-4 text-white font-sans">
-          <div className="w-full max-w-lg space-y-6 rounded-lg border border-amber-500/30 bg-zinc-950 p-8 text-center shadow-2xl">
+          <TacticalCard className="w-full max-w-lg space-y-6 border-amber-500/30 p-8 text-center shadow-2xl">
             <div className="mx-auto flex size-14 items-center justify-center rounded-md border border-amber-500/30 bg-amber-500/10 text-amber-400">
               <ShieldCheck className="size-7" />
             </div>
@@ -902,7 +903,7 @@ export function ContestArenaPage() {
                 </Link>
               </Button>
             </div>
-          </div>
+          </TacticalCard>
         </div>
       );
     }
@@ -910,7 +911,7 @@ export function ContestArenaPage() {
     // Generic fallback error
     return (
       <div className="flex min-h-[100dvh] w-full flex-col items-center justify-center bg-black p-4 text-white font-sans">
-        <div className="w-full max-w-md space-y-6 rounded-lg border border-white/10 bg-zinc-950 p-8 text-center shadow-2xl">
+        <TacticalCard className="w-full max-w-md space-y-6 p-8 text-center shadow-2xl">
           <div className="mx-auto flex size-14 items-center justify-center rounded-md border border-white/10 bg-zinc-900 text-zinc-400">
             <AlertCircle className="size-7" />
           </div>
@@ -946,7 +947,7 @@ export function ContestArenaPage() {
               </Link>
             </Button>
           </div>
-        </div>
+        </TacticalCard>
       </div>
     );
   }

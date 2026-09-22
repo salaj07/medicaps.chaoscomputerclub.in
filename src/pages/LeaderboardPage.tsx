@@ -4,7 +4,7 @@ import { useAppSelector } from "@/store/hooks";
 import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Minus, Trophy } from "lucide-react";
 import { getUniversityLeaderboardData } from "@/organization/data/portal.functions";
 import { LeaderboardRowSkeleton } from "@/organization/components/skeletons";
-import { PageHeader } from "@/organization/components/ui";
+import { PageHeader, TacticalCard } from "@/organization/components/ui";
 import { useSwrData } from "@/lib/cache/swrCache";
 import { useChunkedList } from "@/hooks/useChunkedList";
 import {
@@ -87,16 +87,16 @@ export function LeaderboardPage() {
         title="University Leaderboard"
         description="Unified standings across Medi-Caps University computing departments."
         action={
-          <div className="flex flex-col items-start md:items-end justify-center rounded-lg border border-white/8 bg-black p-4 min-w-[180px]">
+          <TacticalCard className="flex flex-col items-start md:items-end justify-center p-4 min-w-[180px]">
             <span className="font-mono text-[10px] uppercase tracking-widest text-zinc-500">Rating Season</span>
             <strong className="font-mono text-base font-semibold text-white">2025–2026</strong>
             <small className="font-mono text-xs text-lime-400 tabular-nums">{totalCount} ranked cadets</small>
-          </div>
+          </TacticalCard>
         }
       />
 
       {/* Table Container */}
-      <div className="overflow-hidden rounded-lg border border-white/8 bg-black">
+      <TacticalCard className="overflow-hidden">
         <div className="overflow-x-auto">
           <Table>
             <TableHeader>
@@ -260,7 +260,7 @@ export function LeaderboardPage() {
             </div>
           </div>
         </div>
-      </div>
+      </TacticalCard>
     </div>
   );
 }

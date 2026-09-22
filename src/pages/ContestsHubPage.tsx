@@ -30,7 +30,7 @@ import type { ContestSummary, ParticipationRecord } from "@/features/contest/typ
 import { getUniversityLeaderboardData } from "@/organization/data/portal.functions";
 import type { LeaderboardEntry } from "@/organization/data/types";
 import { ContestsHubSkeleton, Skeleton } from "@/organization/components/skeletons";
-import { PageHeader, SectionHeader } from "@/organization/components/ui";
+import { PageHeader, SectionHeader, TacticalCard } from "@/organization/components/ui";
 import { useRealtimeEvents } from "@/lib/realtime";
 import { toast } from "sonner";
 
@@ -307,7 +307,7 @@ export function ContestsHubPage() {
         title="Contests Hub"
         description="Competitive programming rounds for Medi-Caps cadets. Compete, solve algorithmic problems, and climb the university leaderboard."
         action={
-          <div className="grid grid-cols-3 divide-x divide-white/8 rounded-lg border border-white/8 bg-black lg:min-w-[320px]">
+          <TacticalCard className="grid grid-cols-3 divide-x divide-white/8 lg:min-w-[320px]">
             {[
               { label: "Upcoming", value: upcomingContests.length },
               { label: "Past", value: pastContests.length },
@@ -318,7 +318,7 @@ export function ContestsHubPage() {
                 <span className="mt-0.5 font-mono text-[9px] font-medium uppercase tracking-wider text-zinc-500">{label}</span>
               </div>
             ))}
-          </div>
+          </TacticalCard>
         }
       />
 
@@ -331,7 +331,7 @@ export function ContestsHubPage() {
         />
 
         {upcomingContests.length === 0 ? (
-          <div className="flex flex-col items-center gap-4 rounded-lg border border-white/8 bg-black py-16 text-center">
+          <TacticalCard className="flex flex-col items-center gap-4 py-16 text-center">
             <div className="flex size-12 items-center justify-center rounded-md border border-white/8 bg-black">
               <Calendar className="size-5 text-zinc-500" />
             </div>
@@ -343,13 +343,13 @@ export function ContestsHubPage() {
               <Button asChild variant="outline" size="sm" className="text-xs"><Link to="/problems">Problem Archive</Link></Button>
               <Button asChild variant="ghost" size="sm" className="text-xs"><Link to="/leaderboard">Leaderboard</Link></Button>
             </div>
-          </div>
+          </TacticalCard>
         ) : (
           <div className="grid gap-5 md:grid-cols-1">
 
             {/* ── WEEKLY FEATURED CARD ── */}
             {upcomingWeekly && (
-              <div className="group relative overflow-hidden rounded-lg border border-white/8 bg-black p-6 transition-colors hover:border-white/20">
+              <TacticalCard className="group relative overflow-hidden p-6 transition-colors hover:border-white/20">
                 <div className="flex flex-col gap-5">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
@@ -419,7 +419,7 @@ export function ContestsHubPage() {
                     )}
                   </div>
                 </div>
-              </div>
+              </TacticalCard>
             )}
 
             {/* ── OTHER UPCOMING ── */}
@@ -427,7 +427,7 @@ export function ContestsHubPage() {
               const isReg = Boolean(contest.registered || myParticipations.some((p) => p.contest_slug === contest.slug));
               const isLive = contest.status === "live";
               return (
-                <div key={contest.slug} className="group relative overflow-hidden rounded-lg border border-white/8 bg-black p-5 transition-colors hover:border-white/20">
+                <TacticalCard key={contest.slug} className="group relative overflow-hidden p-5 transition-colors hover:border-white/20">
                   <div className="flex flex-col gap-3">
                     <div className="flex items-center justify-between">
                       <span className="rounded border border-white/10 bg-black px-2 py-0.5 font-sans text-[9px] font-semibold uppercase tracking-wider text-zinc-400">{contest.cadence}</span>
@@ -463,7 +463,7 @@ export function ContestsHubPage() {
                       <Button asChild variant="outline" size="sm" className="text-xs"><Link to={`/contests/${contest.slug}`}>Details</Link></Button>
                     </div>
                   </div>
-                </div>
+                </TacticalCard>
               );
             })}
           </div>
@@ -503,7 +503,7 @@ export function ContestsHubPage() {
                 <Input placeholder="Search by title or edition number..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}
                   className="rounded-md border-white/10 bg-black pl-9 text-xs text-white placeholder:text-zinc-600" />
               </div>
-              <div className="overflow-hidden rounded-lg border border-white/8 bg-black divide-y divide-white/6">
+              <TacticalCard className="overflow-hidden divide-y divide-white/6">
                 {isLoading && pastContests.length === 0 ? (
                   [1, 2, 3].map((i) => (
                     <div key={i} className="flex items-center justify-between gap-4 p-5">
@@ -548,13 +548,13 @@ export function ContestsHubPage() {
                     </article>
                   ))
                 )}
-              </div>
+              </TacticalCard>
             </div>
           )}
 
           {/* MY CONTESTS TAB */}
           {activeTab === "my-contests" && (
-            <div className="overflow-hidden rounded-lg border border-white/8 bg-black divide-y divide-white/6">
+            <TacticalCard className="overflow-hidden divide-y divide-white/6">
               {isLoadingParticipations ? (
                 [1, 2, 3].map((i) => (
                   <div key={i} className="flex items-center justify-between gap-4 p-5">
@@ -593,14 +593,14 @@ export function ContestsHubPage() {
                   </article>
                 ))
               )}
-            </div>
+            </TacticalCard>
           )}
         </div>
 
         {/* Right Sidebar */}
         <aside className="space-y-5">
           {/* Top Rankers */}
-          <div className="overflow-hidden rounded-lg border border-white/8 bg-black">
+          <TacticalCard className="overflow-hidden">
             <div className="flex items-center justify-between border-b border-white/8 px-4 py-3">
               <div className="flex items-center gap-2">
                 <Trophy className="size-4 text-lime-400" />
@@ -637,7 +637,7 @@ export function ContestsHubPage() {
                 University Standings <ArrowRight className="size-3" />
               </Link>
             </div>
-          </div>
+          </TacticalCard>
         </aside>
       </div>
     </div>

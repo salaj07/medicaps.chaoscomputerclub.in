@@ -8,7 +8,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { cn } from "@/lib/utils";
 import type { RankingRow, AssessmentRanking } from "@/features/contest/types";
 import { ContestResultsSkeleton } from "@/organization/components/skeletons";
-import { PageHeader, SectionHeader } from "@/organization/components/ui";
+import { PageHeader, SectionHeader, TacticalCard } from "@/organization/components/ui";
 
 const FILTERS = ["all", "qualified", "eliminated"] as const;
 type FilterKey = (typeof FILTERS)[number];
@@ -214,7 +214,7 @@ export function ContestResultsPage() {
       </div>
 
       {/* Table */}
-      <div className="overflow-hidden rounded-lg border border-white/8 bg-black">
+      <TacticalCard className="overflow-hidden">
         <Table>
           <TableHeader>
             <TableRow className="border-b border-white/8 hover:bg-transparent">
@@ -246,7 +246,7 @@ export function ContestResultsPage() {
             )}
           </TableBody>
         </Table>
-      </div>
+      </TacticalCard>
 
       {/* Bottom Actions */}
       <div className="flex flex-wrap items-center gap-3 pt-2">

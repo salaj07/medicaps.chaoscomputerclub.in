@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { MemberProfile } from "../data/types";
 import type { RatingDistribution } from "../data/portal.functions";
 import { cn } from "@/lib/utils";
+import { TacticalCard } from "./ui";
 
 /**
  * RatingDistributionCard
@@ -61,7 +62,7 @@ export function RatingDistributionCard({
   const MAX_BAR_PX = 72;
 
   return (
-    <div className="flex flex-col justify-between h-full rounded-lg border border-white/8 bg-black p-5 sm:p-6">
+    <TacticalCard className="flex flex-col justify-between h-full p-5 sm:p-6">
       {/* Top Percentile Display */}
       <div>
         <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 block">
@@ -156,6 +157,6 @@ export function RatingDistributionCard({
           </strong>
         </div>
       </div>
-    </div>
+    </TacticalCard>
   );
 }
